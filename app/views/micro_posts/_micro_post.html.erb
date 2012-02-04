@@ -1,0 +1,21 @@
+<div class="post">
+  <div class="meta">
+    <%= gravatar_for micro_post.user, :size => 30 %>
+    <strong><%= link_to micro_post.user.name, user_path(micro_post.user) %></strong> 
+    <%= t :colon %> 
+    <strong><a href='<%= micro_post.url %>'><%= micro_post.title %></a></strong>
+  </div>
+  <div class="brief">
+    <p>
+      <% if micro_post.tag == 'project' %>
+        <%= sanitize micro_post.description %>
+      <% else %>
+      <%= truncate(strip_tags(micro_post.description), :length => 200) %>
+      <a href="<%= micro_post.url %>"><%= t :continue_read %></a>
+      <% end %>
+    </p>
+    <p class="date">
+      <span class="quiet"><%= l micro_post.pub_date, :format => :long %></span>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,3 @@
+<% if not @user.posts_update_at.nil? and @user.posts_update_at > Time.utc(1986) %>
+  (<%= t :updated_before, :desc => distance_of_time_in_words(@user.posts_update_at, Time.now.utc) %>)
+<% end %>

@@ -1,0 +1,9 @@
+<% user ||= current_user %>
+<div class="stats">
+  <ul class="stats-nav">
+    <li><strong>URL: </strong><%= link_to user_url(user), user_path(user) %>
+    <li><strong>Email: </strong><%= user.email %>
+    <li><strong><%= pluralize(user.entrys.count, "entry") %></strong>
+  </ul>
+</div>
+

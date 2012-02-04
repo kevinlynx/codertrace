@@ -1,0 +1,12 @@
+<%= render 'shared/avatar-header' %>
+<div id="main" style="width: 100%">
+<h3 class="window-title"><%= t "entry.edit" %> </h3>
+<div id="setting">
+  <div class="op-tip">
+    <%= content_tag :div, flash[:alert], :class => "alert" if flash[:alert] %>
+    <%= content_tag :div, flash[:notice], :class => "notice" if flash[:notice] %>
+  </div>
+  <%= render "entries/edit" %>
+</div>
+</div>
+

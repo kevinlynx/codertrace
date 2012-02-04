@@ -1,0 +1,26 @@
+<%= render 'shared/avatar-header', :user => @user %>
+<%= render 'shared/header-profile', :user => @user %>
+<div id="all-entries">
+  <h3 class="window-title">
+    <%= t "entry.title" %> (<%= @user.entrys.count %>)
+    <% if @user == current_user %>
+      <%= link_to t(:new_entry), new_entry_path, :class => "title-link" %>
+    <% end %>
+  </h3>
+  <% if user_entry_count(@user).zero? %>
+    <div class="notice">No entries</div>
+  <% else %>
+    <div id="entry-list">
+      <%= render @user.entrys %>
+    </div>
+  <% end %>
+</div>
+<div id="all-posts">
+  <h3 class="window-title">
+    <%= t :activity %>
+    <%= link_to t(:refresh_post), refresh_posts_user_path(@user, :page => params[:page]), :id => 'refresh-link', :remote => true, 
+        :class => "title-link", :method => :post %>
+    <span id="posts-update-time" class="quiet"><%= render 'users/posts_update_time' %></span>
+  </h3>
+  <%= render 'shared/posts' %>
+</div> 

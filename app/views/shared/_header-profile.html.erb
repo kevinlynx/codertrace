@@ -1,0 +1,21 @@
+<div id="user-profile">
+  <div class="base">
+  <dl>
+    <dt><%= t :name %></dt>
+    <dd><%= user.name %></dd>
+  </dl>
+  <dl>
+    <dt><%= t :index_url %></dt>
+    <dd><%= link_to user_url(user), user_path(user) %></dd>
+  </dl>
+  <dl>
+    <dt><%= t :email %></dt>
+    <dd><%= user.email %></dd>
+  </dl>
+  <dl>
+    <dt><%= t :description %></dt>
+    <dd><%= user_description user %></dd>
+  </dl>
+  </div>
+</div>
+

@@ -1,0 +1,7 @@
+<% @title = user_following_desc @user %>
+<%= render 'shared/avatar-header', :user => @user %>
+<div id="main">
+  <h2><%= t :following_msg, :name => @user.name, :count => @user.following.count %></h2>
+  <%= render 'shared/users', :users => @user.following %>
+</div>
+

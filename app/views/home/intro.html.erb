@@ -1,0 +1,37 @@
+<div id='intro' class='round'>
+  <div id='logo'>
+    <strong class="big">Coder Trace</strong><br/>
+    <strong class="medium"><%= t "site.logo_text" %></strong>
+  </div>
+  <div id='desc'>
+    <%= t "site.intro" %>
+    <%= link_to t("site.more_about"), about_path %>
+  </div>
+  <div id='signup'>
+    <%= link_to t("site.signup_to_enjoy"), new_registration_path(resource_name), :class => 'big-button' %>
+  </div>
+  <div class='hor-signin'>
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <ul>
+        <li>
+          <%= f.label :email, t(:email) %>
+          <%= f.email_field :email, :class => 'txt-ctrl', :size => 25 %>
+        </li>
+        <li>
+          <%= f.label :password, t(:password) %>
+          <%= f.password_field :password, :class => 'txt-ctrl', :size => 25 %>
+        </li>
+        <li class='last'>
+          <label for>&nbsp;</label>
+          <%= f.submit t(:sign_in), :class => 'link-btn-dark' %>
+        </li>
+        <li>
+          <%= f.check_box :remember_me %> <%= f.label :remember_me, t(:remember_me) %>
+        </li>
+        <li>
+          <%= link_to t(:forgot_your_password), new_password_path(resource_name), :class => "quiet" %>
+        </li>
+      </ul>
+    <% end %>
+  </div>
+</div>

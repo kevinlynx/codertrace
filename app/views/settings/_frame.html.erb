@@ -1,0 +1,12 @@
+<%= render 'shared/avatar-header' %>
+<div id="main" style="width: 100%">
+<%= render 'settings/tab_nav', :current => current %>
+<div id="setting">
+  <div class="op-tip">
+    <%= content_tag :div, flash[:alert], :class => "alert" if flash[:alert] %>
+    <%= content_tag :div, flash[:notice], :class => "notice" if flash[:notice] %>
+  </div>
+  <%= render :partial => content %>
+</div>
+</div>
+

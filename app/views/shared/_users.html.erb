@@ -1,0 +1,19 @@
+<div class="users">
+  <% users.each do |user| %>
+  <div class="user">
+    <div class="avatar">
+      <%= gravatar_for user, :size => 48 %>
+    </div>
+    <div class="intro">
+      <div class="meta">
+        <span class="name"><%= link_to user.name, user_path(user) %></span>
+        <div class="util">
+          <%= render 'shared/follow_btn', :user => user %>
+        </div>
+      </div>
+      <p class="description"><%= user_description user %></p>
+    </div>
+  </div>
+  <% end %>
+</div>
+

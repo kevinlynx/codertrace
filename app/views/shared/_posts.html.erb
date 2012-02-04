@@ -1,0 +1,11 @@
+<div id="post-list">
+<% if @micro_posts.count.zero? %>
+  <div class="notice">No activity</div>
+<% else %>
+  <%= render @micro_posts %>
+  <div class="flickr_pagination">
+    <%= will_paginate @micro_posts, :params => {:controller => 'users', :action => 'show', 
+            :id => @user.id } %>
+  </div>
+<% end %>
+</div>

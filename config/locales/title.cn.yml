@@ -1,0 +1,16 @@
+cn:
+  title:
+    home: "首页"
+    sign_in: "登录"
+    sign_up: "注册"
+    set_profile: "修改个人信息"
+    set_password: "修改密码"
+    add_manual_entry: "手工添加"
+    add_blog_entry: "添加博客"
+    add_github_entry: "添加Github"
+    edit_entry: "编辑"
+    follower: "关注"
+    following: "关注"
+    about: "关于"
+    site: "Coder Trace - 集中展示你的互联网活动"
+    update_log: "更新日志"

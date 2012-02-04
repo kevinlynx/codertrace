@@ -1,0 +1,25 @@
+<% @title = t "title.sign_up" %>
+<div class="signup">
+<h2 class="window-title"><%= t :sign_up %></h2>
+<div class="formbody">
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <% if resource.errors.any? %>
+    <%= content_tag :div, t(:reg_need_correct_data), :class => 'alert' %>
+  <% end %>
+  <div><%= f.label :name, t(:name) %><br/>
+  <%= f.text_field :name, :class => 'txt-ctrl' %></div>
+  <div><%= f.label :email, t(:email) %><br />
+  <%= f.email_field :email, :class => 'txt-ctrl' %></div>
+
+  <div><%= f.label :password, t(:password) %><br />
+  <%= f.password_field :password, :class => 'txt-ctrl' %></div>
+
+  <div><%= f.label :password_confirmation, t(:password_confirmation) %><br />
+  <%= f.password_field :password_confirmation, :class => 'txt-ctrl' %></div>
+
+  <div style="margin-top: 0.5em">
+      <%= f.submit t(:sign_up_now), :class => "link-btn" %>
+  </div>
+<% end %>
+</div>
+</div>

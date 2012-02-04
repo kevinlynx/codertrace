@@ -1,0 +1,27 @@
+  <% user ||= current_user %>
+  <table class="profile">
+    <tr>
+      <td class="user">
+        <ul>
+          <li><h1><%= gravatar_for user, :size => 48 %> <%= user.name %></h1></li>
+          <li class="v-center"><%= render 'shared/follow_btn', :user => user %></li>
+        </ul>
+      </td>
+      <td class="follow-stats">
+        <ul>
+          <li>
+            <a href="<%= followers_user_path user %>">
+              <strong><%= user.followers.count %></strong>
+              <span><%= user_follower_desc user %></span>
+            </a>
+          </li>
+          <li>
+            <a href="<%= following_user_path user %>">
+              <strong><%= user.following.count %></strong>
+              <span><%= user_following_desc user %></span>
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </table>

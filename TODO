@@ -1,0 +1,152 @@
+CoderProfile不应该是一个另一个微博，所以，根本没必要突出显示micro posts。CoderProfile更应该突出显示一个程序员的profile。而这个profile的主要内容，实际上是其添加的各种entries，例如博客名称、博客地址、项目名称、项目描述、项目地址。但这些繁杂的条码，最好能做到自动获取。相反，针对这些entries产生的动态消息，也就是这里的micro posts，则应该普通对待，而不是像微博一样突出显示。
+
+如何获取、整理显示这些entries？
+
+博客：博客标题、博客描述、博客地址
+项目：项目语言、项目类型、项目描述、项目地址
+
+针对github，是否有API获取到指定用户的项目信息，例如用户仅需指定自己的github主页，然后自动获取其项目列表。
+
+针对博客和项目，可能添加的方式会有所不同。对于github，预计可以自动获取。自动获取出的每一个项目即为一个entry，但这些entry对应的RSS仅一个。对于博客，其动态RSS地址可能需要用户自己指定。
+
+CoderProfile还有个作用，就是可以将若干使用独立博客的人聚集在一起，形成一个圈子。
+
+Activity(post)更新策略
+---------------------------
+
+* 网站后台以一定时间间隔遍历所有entry，更新最新动态；此种方式耗时严重，尤其当用户量大的时候基本不可行。可采取让用户端手动（或js脚本）更新自己的activity，从而达到更新所有activity的效果
+* 当用户添加新的entry时，此时应异步获取该entry对应的activity。
+
+方式一中，用户手动要求刷新的entris，不仅是自己的，也包括自己following的，亦即多个用户的。当然，因为用户端可能有多个用户会发起对同一个用户的entry的更新，所以机制上需要为每一个entry设定一个更新时间。
+
+对于页面交互问题，暂定为，当用户端点击刷新时，发起HTTP请求到服务器端，此时服务器异步更新，客户端启动一个JS脚本，该脚本在以一定时间间隔获取服务器端最新的activity。对于新添加的entry，也如此，即添加完后开启一个脚本，一定时间后获取服务器最新activity。
+
+服务器需要一种异步机制。
+
+1.27.2012
+---------------
+
+后台关于异步job的唯一性问题：每次前端发出refresh_posts请求时，后台都建立folowing/self的所有entry的更新job，非常浪费和不必要。这里的目标，首先是针对一个entry保证只有一个job服务之，其次是需要一种标示进度的机制，让前端知道什么时候服务器端完成了所有entry的更新工作。
+
+前端暂定位以一定间隔获取服务器端此工作完成的进度，当进度满时即停止请求，标示用户此次更新请求完成。
+
+建立表JobList，仅保存feed url，每次提交新的job时，检查该表里是否已存在feed url对应的job，没有再往该表里添加url；当job完成时，此时在另一个进程，移除该表里对应的url，表示该job完成。
+
+建立表RequestProgress，保存一个总的工作量，其为需要更新的entry数量，再保存一个当前工作量，表示已经完成的entry数。每次前端发起更新请求时，后台计算需要更新的entry数，计算总entry数时，需要排除已经无需更新的entry，然后添加记录；需要将新记录的ID传入job，在job中每完成一个entry，则根据此ID更新对应的RequestProgress已完成entry数量。RequestProgress的ID还需要传到前端，以方便前端根据此ID查询完成的进度。
+
+(holly shit, who can imagine even the easist job can cost so much work to do: 2 database tables, and complex font-end/back-end communications)
+
+注意，多个前端可能会同时更新同一个entry，虽然这在提交给job时，通过JobList有效避免，但对于ReuqestProgress需要单独处理。因为事实上每个job消耗时间不算太长，所以可以简单处理为，如果某个entry对应的job已存在，那么依然算该entry已完成。
+
+Process Flow
+--------------
+
+当用户点击刷新时，浏览器发送users/id/refresh_posts请求，后台开始处理此请求，记录进度；若进度未完成，则后台返回前端一个进度提示，前端延时再次发送该请求，后台收到该请求时检查进度，若进度满，则将posts更新给前端，否则依然发送进度内容。
+
+=>
+
+前端发送refresh_posts请求时，后台发送一个js脚本给前端，该脚本屏蔽刷新链接，并注册一个超时函数；该函数触发时，向后台请求refresh_progress，后台处理该请求时，查询进度，若进度未完，则发送相同的js给前端，否则发送完成后的posts。需要注意，发送refresh_progress请求的js脚本里需要带上任务id。
+
+-----------------------
+Feed url, content
+JobProgress sum, finished
+ProcessJob  url
+
+when an entry has been finished, it increase the `finished` field in JobProgress; before process an entry, first check whether it exists in ProcessJob table.
+多个用户可能会提交处理同一个entry的请求，而这个entry仅只有一个job在处理。即一个entry url，可能对应多个JobProgress。
+
+解决多个用户处理同一个entry的问题
+-------------------------------------
+
+当用户A发起处理entry A的job时，用户B如果也要处理entry A，则往表WaitFeedCache里添加entry A url及用户B创建的JobProgress id。当用户A发起的job完成时，则将WaitFeedCache表里的所有entry A url对应的JobProgress标示此job完成。
+
+1.28.2012
+----------------
+TODO:
+
+功能类：
+
+* post自动刷新
+* entry添加，github和博客，可暂不拆分github项目
+* profile的编辑页面
+* 首页修改为介绍页面
+
+细节类：
+
+* 操作信息提示
+* 中文界面
+* 各个页面正确的转向
+* 各个页面参数合法性检测，数据库查询结果检测
+* 多浏览器测试
+* rails product模式
+* 对于github的post，最好还是像github那样去显示
+* 浏览其他用户时，增加“关注/取消关注“按钮
+* 页面自动刷新的超时
+
+总结：
+
+* delayed_job的使用
+* rails3.1.3中ajax的使用
+* rails3.1.3中UJS的使用(json/javascript)
+
+问题：
+
+* 如何给某个页面附加单独的js
+* 如何将自己的日志单独到一个文件里
+* 现在每次user index页面载入时，会自动发起refresh posts请求，虽然服务器会进行时间判定；但翻页动作也会导致刷新，最好将翻页作修改为ajax，更奇怪的是，刷新会将整个posts替换，导致翻页如果停顿时间太长而产生zh真正的刷新时，页面自动回到第一页的怪异现象；或者生成ajax回应时参考page参数
+
+1.31.2012
+
+devise错误提示问题。
+
+2.1.2012
+
+entry添加问题
+----------------
+
+有些entry的信息，可能需要根据用户简单的输入自动获取，例如博客，仅要求输入一个RSS地址，然后自动获取RSS来设置该entry的标题和描述。
+
+这涉及到同post更新相似的异步操作。当添加一个博客RSS时，提交一个JOB，这个JOB和刷新这个博客对应的POST一样，获取RSS FEED，然后解析。JOB完成时，根据返回的FEED完善这个entry的内容。这里需要为每个entry添加一个rss url。
+
+前端则需要不断地请求该entry是否已完善，与POST不同的时，这个异步请求只需要处理一个entry。所以，简单地通过给entry附加一个是否完善的标志即可。
+
+方案：
+
+new_entry_path -> manual, new_blog_entry_path -> blog, new_github_entry_path -> github...
+associate a create method to every form, the forms using the same route: create_entry_path.
+
+entry/create use the method to determine how to create the entry. If the method need async creating, mark the completed flag as 0, and create an async job, when the job done, mark the flag to 1. Otherwise, just set the flag to 1.
+
+Everytime the front-end request to display current_user's entry, if the entry is not completed, send a js to front-end, this js will start a timer, and the timer will request the entry by its id. In entry/show, if the requested entry is not completed, response a json data with faild flag, otherwise render the entry and send it back as a json data.
+
+If a front-end request another user's un-completed entry, just response nothing.
+
+异步刷新posts模块已经比较混乱，容易出现BUG，并且很难查找问题。
+
+today bug:
+
+* 添加博客类entry时，异步获取entry后无法重置user.posts_update_at时间戳；
+* 偶尔虽然有feed，但却没有刷出posts
+
+2.2.2012
+
+有时候刷新POSTS会在所有POSTS没刷新完就更新到前台，是因为JobProgress.finished > JobProgress.sum，这个finished目前在job中会被多次累加。从而当一个entry完成时，finished值实际上不止增加了1。
+
+today bug:
+
+* in entry_rss_job, User.update not really update the user table, but using update_attribute work
+
+客户端js里的locale字符串通过gem i18n-js解决，大概就是从config/locale里的文件翻译为等价的js，被浏览器使用。
+
+2.3.2012
+
+today bug:
+
+因为可以添加相同的entry，计算job sum时，未排除相同rss url的entry，但在job实际执行时检测了重复，导致某个job list一直未完成，从而导致客户端一致在刷新进度。
+
+2.4.2012
+
+today bug:
+
+在chrome上，当安装插件Force Microsoft Yahei Font后，line edit控件显示的过长。
+

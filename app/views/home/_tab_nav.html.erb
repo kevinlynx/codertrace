@@ -1,0 +1,7 @@
+<div class="tab-nav-frame">
+<ul class="tab-nav">
+  <li><%= link_to t(:about), about_path, is_current?(:about, current) %></li>
+  <li><%= link_to t(:story), story_path, is_current?(:story, current) %></li>
+  <li><%= link_to t(:update_log), update_log_path, is_current?(:update_log, current) %></li>
+</ul>
+</div>

@@ -1,0 +1,18 @@
+<div id="dashboard">
+  <ul class="nav">
+  <% if user_signed_in? %>
+    <li><%= gravatar_for(current_user, :size => 30) %>
+    <li class="name"><%= link_to current_user.name, user_path(current_user) %>
+    <li><%= link_to t(:edit_profile), settings_profile_path %>
+    <li><%= link_to t(:sign_out), destroy_user_session_path, :method => :delete %>
+  <% else %>
+    <li><%= link_to t(:sign_up), new_registration_path(resource_name) %>
+    <li><%= link_to t(:sign_in), new_session_path(resource_name) %>
+  <% end %>
+  <% if Rails.env == "development_" %>
+    <li><%= link_to 'All users', users_path %>
+    <li><%= link_to 'Destroy all posts', micro_posts_destroy_all_path %>
+  <% end %>
+  </ul>
+</div>
+

@@ -1,0 +1,34 @@
+<% entry ||= @entry %>
+<% unless entry.completed? %>
+  <% if entry.user == current_user %>
+    <div class="entry" id="entry-<%= entry.id %>">
+      <h3 style="width:100%; text-align: center;"><%= t :getting_entry %></h3>
+      <script type="text/javascript">
+        start_refresh_entry('<%= entry_path(entry) %>')
+      </script>
+    </div>
+  <% end %>
+<% else %>
+  <div class="entry" id="entry-<%= entry.id %>">
+   <div class="meta">
+      <div class="title">
+        <span><strong>
+          <% if entry.user == current_user %>
+            <%= link_to entry.title, edit_entry_path(entry) %>
+          <% else %>
+            <%= entry.title %>
+          <% end %>
+        </strong></span>
+      </div>
+      <div class="tip">
+        <span><%= t :tag %><%= t :colon %><%= entry.tag %></span>
+      </div>
+    </div>
+    <div class="url">
+      <%= link_to entry.url, entry.url %>
+    </div>
+    <div class="desc">
+      <%= entry.description %>
+    </div>
+  </div>
+<% end %>

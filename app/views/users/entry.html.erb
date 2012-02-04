@@ -1,0 +1,8 @@
+<%= render 'shared/avatar-header', :user => @user %>
+<div id="main">
+  <%= pluralize(@user.entrys.count, "entry") %>
+  <% @user.entrys.each do |entry| %>
+    <h3><%= entry.url %></h3>
+  <% end %>
+  <%= link_to 'Add new', new_entry_path if current_user == @user %>
+</div>

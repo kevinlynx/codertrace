@@ -1,0 +1,6 @@
+<div class="tab-nav-frame">
+  <ul class="tab-nav">
+    <li><%= link_to t(:base_profile), settings_profile_path, is_current?(:profile, current) %></li>
+    <li><%= link_to t(:modify_password), settings_password_path, is_current?(:password, current) %></li>
+  </ul>
+</div>

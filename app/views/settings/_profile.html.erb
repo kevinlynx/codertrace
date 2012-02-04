@@ -1,0 +1,25 @@
+<%= form_for(@user, :url => settings_profile_p_path, :html => { :method => :put }) do |f| %>
+  <dl class="avatar">
+    <dt><%= gravatar_for @user, :size => 48 %></dt>
+    <dd>
+      <h3>
+        <a href='http://gravatar.com/'><%= t :change_avatar_tip %></a>
+      </h3>
+      <span class="avatar-tip"><%= t :avatar_from_tip, :email => @user.email %></span>
+    </dd>
+  </dl>
+  <dl>
+    <dt><%= f.label :name, t(:name) %></dt>
+    <dd><%= f.text_field :name, :class => 'txt-ctrl' %></dd>
+  </dl>
+  <dl>
+    <dt><%= f.label :description, t(:description) %></dt>
+    <dd><%= f.text_area :description, :rows => 4, :cols => 60, :class => 'txt-ctrl' %></dd>
+  </dl>
+  <dl>
+    <dd>
+      <%= f.submit t(:update), :class => 'link-btn' %>
+    </dd>
+  </dl>
+<% end %>
+

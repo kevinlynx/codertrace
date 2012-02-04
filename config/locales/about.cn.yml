@@ -1,0 +1,15 @@
+cn:
+  site:
+    title:
+      story: "开发故事"
+    intro: "Coder Trace是一个集中展示一个程序员(Coder)的网站。每个Coder在Internet上会活跃于多个地方，他（她）会发表技术博客，会在Github上做开源项目，会在Stackoverflow上提交/回答问题。这些所有分散的信息可以反映这个Coder的能力。而Coder Trace的作用，就是帮助Coder聚合这些信息，集中展示。"
+    add_blog: "你可以添加你的博客："
+    add_github: "你也可以添加你的Github主页："
+    add_more: "为了实现Coder Trace的目标，我们会继续添加更多的网站支持。"
+    main_page: "Coder Trace会集中展示你在这些网站上的最新动态。"
+    enjoy_it: "作为一个程序员，你也许想看看"
+    story: "这事应该好好构思下。"
+    logo_text: "集中展示你在互联网上的活动"
+    more_about: "了解更多..."
+    signup_to_enjoy: "立即注册使用"
+

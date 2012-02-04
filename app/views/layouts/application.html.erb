@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%= stylesheet_link_tag "application" %>
+  <%= stylesheet_link_tag "profile" %>
+  <%= stylesheet_link_tag "page" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <script type="text/javascript">
+    I18n.defaultLocale = "<%= I18n.default_locale %>";
+    I18n.locale = "<%= I18n.locale %>";
+  </script>
+  <title><%= title %></title>
+</head>
+<body>
+  <div id="container">
+    <div id="header">
+      <div class="middle">
+        <div id="logo">
+         <h1><%= link_to 'Coder Trace', root_path %></h1>
+        </div>
+        <%= render 'shared/dashboard' %>
+      </div>
+    </div>
+    <div id="content" class="middle">
+      <%= yield %>
+    </div>
+    <div id="footer"> 
+      <div class="middle">
+        <%= link_to t(:home), root_path %>&nbsp;|&nbsp;
+        <%= link_to t(:about), about_path %><br/>
+        <span class="quiet">a <b>Kevin Lynx</b> production</span><br/>
+        <span class="quiet">&copy;Coder Trace 2012</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

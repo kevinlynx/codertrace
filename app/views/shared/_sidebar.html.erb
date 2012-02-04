@@ -1,0 +1,8 @@
+<div id="sidebar">
+  <div id="profile">
+    <% user ||= current_user %>
+    <%= gravatar_for user %>&nbsp;
+    <h3><%= link_to user.name, user_path(user) %></h3>
+    <%= render 'shared/stats', :user => user %>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<%= form_for(@entry) do |f| %>
+  <dl>
+    <dt><%= f.label :title, t(:title) %></dt>
+    <dd><%= f.text_field :title, :class => 'txt-ctrl' %></dd>
+  </dl>
+  <dl>
+    <dt><%= f.label :url, t(:url) %></dt>
+    <dd><%= f.text_field :url, :class => 'txt-ctrl' %></dd>
+  </dl>
+  <dl>
+    <dt><%= f.label :description, t("entry.desc") %></dt>
+    <dd><%= f.text_area :description, :size => "60x4", :class => 'txt-ctrl' %></dd>
+  </dl>
+  <dl>
+    <dd>
+      <%= link_to_submit t(:update), :class => 'link-btn' %>
+      <%= link_to t("entry.delete"), @entry, :method => 'delete', :class => 'link-btn' %>
+      <%= link_to t("entry.back"), user_path(@entry.user), :class => 'link-btn' %>
+    </dd>
+  </dl>
+<% end %>
