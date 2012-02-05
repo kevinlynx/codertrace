@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   has_many :followers, :through => :reverse_relationships, :source => :follower
 
   def add_entry(entry)
-    entrys << entry
+    self.entrys << entry
     reset_posts_update_time
   end
 
