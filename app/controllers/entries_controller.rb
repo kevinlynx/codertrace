@@ -11,9 +11,9 @@ class EntriesController < ApplicationController
   def show
     @entry = Entry.find(params[:id])
     data = {}
+    data[:id] = @entry.id
     if @entry.completed?
       data[:complete] = 'true'
-      data[:id] = @entry.id
       data[:entry] = render_to_string :partial => 'entries/entry'
     else
       data[:complete] = 'false'

@@ -2,7 +2,7 @@
 <% unless entry.completed? %>
   <% if entry.user == current_user %>
     <div class="entry" id="entry-<%= entry.id %>">
-      <h3 style="width:100%; text-align: center;"><%= t :getting_entry %></h3>
+      <h3 id="entry-tip-<%= entry.id %>" style="width:100%; text-align: center;"><%= t :getting_entry %></h3>
       <script type="text/javascript">
         start_refresh_entry('<%= entry_path(entry) %>')
       </script>

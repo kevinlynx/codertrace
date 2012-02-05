@@ -71,7 +71,7 @@ function refresh_entry(url, times) {
     $.get(url, function(data, stat, xhr) {
                     if (data["complete"] != "true") {
                         if (times >= 5) {
-                            $('#entry-'+data["id"]).html(I18n.t("frontend.timeout"))
+                            $('#entry-tip-'+data["id"]).html(I18n.t("frontend.timeout"))
                         } else {
                             setTimeout(function() { refresh_entry(url, times); }, 1000);
                         }
