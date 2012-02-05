@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(:version => 20120201020846) do
 
   create_table "feeds", :force => true do |t|
     t.string   "url"
-    t.text   "content"
+    t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "download_at"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(:version => 20120201020846) do
   end
 
   create_table "micro_posts", :force => true do |t|
-    t.text  "description"
+    t.text     "description"
     t.string   "url"
     t.string   "title"
     t.integer  "user_id"
@@ -84,8 +84,8 @@ ActiveRecord::Schema.define(:version => 20120201020846) do
   add_index "relationships", ["follower_id"], :name => "index_relationships_on_follower_id"
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                 :default => "", :null => false
-    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string   "email",                                 :default => "",                    :null => false
+    t.string   "encrypted_password",     :limit => 128, :default => "",                    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -97,19 +97,12 @@ ActiveRecord::Schema.define(:version => 20120201020846) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
-    t.string   "description",                           :default => ""
-    t.datetime "posts_update_at"
+    t.string   "description"
+    t.datetime "posts_update_at",                       :default => '1986-01-01 00:00:00'
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-
-  create_table "wait_feed_caces", :force => true do |t|
-    t.string   "url"
-    t.integer  "job_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "wait_feed_caches", :force => true do |t|
     t.string   "url"
