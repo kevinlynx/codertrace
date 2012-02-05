@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   end
 
   def add_post(post)
-    micro_posts << post
+    self.micro_posts << post
     logger.info "add post #{post.title} to #{name}"
   end
 
