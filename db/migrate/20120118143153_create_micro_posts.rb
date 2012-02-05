@@ -1,7 +1,7 @@
 class CreateMicroPosts < ActiveRecord::Migration
   def change
     create_table :micro_posts do |t|
-      t.string :description
+      t.text :description
       t.string :url
       t.string :title
       t.integer :user_id

@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(:version => 20120201020846) do
   end
 
   create_table "micro_posts", :force => true do |t|
-    t.string   "description"
+    t.text  "description"
     t.string   "url"
     t.string   "title"
     t.integer  "user_id"

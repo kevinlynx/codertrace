@@ -43,7 +43,7 @@ function refresh_progress(url, times) {
     times ++;
     $.post(url, function(data, stat, xhr) {
                     if (data["progress"] != "-1") {
-                        if (times >= 5) {
+                        if (times >= 30) {
                             refresh_post_failed()
                         } else {
                             setTimeout(function () { refresh_progress(url, times); }, 1000);
@@ -70,7 +70,7 @@ function refresh_entry(url, times) {
     times ++;
     $.get(url, function(data, stat, xhr) {
                     if (data["complete"] != "true") {
-                        if (times >= 5) {
+                        if (times >= 30) {
                             $('#entry-tip-'+data["id"]).html(I18n.t("frontend.timeout"))
                         } else {
                             setTimeout(function() { refresh_entry(url, times); }, 1000);
