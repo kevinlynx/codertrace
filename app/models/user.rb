@@ -81,7 +81,7 @@ class User < ActiveRecord::Base
   end
 
   def create_post_from_rss(item, tag)
-    post = MicroPost.new(:description => item.description, :url => item.link, 
+    post = MicroPost.new(:description => "temp", :url => item.link, 
                          :title => item.title, :pub_date => item.pubDate,
                          :tag => tag)
     post.user = self
