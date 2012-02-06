@@ -76,7 +76,7 @@ class UsersController < ApplicationController
       if is_current_user? user
         @micro_posts = user.feed.paginate(:page => params[:page], :per_page => 5)
       else
-        @micro_posts = user.microposts.paginate(:page => params[:page], :per_page => 5)
+        @micro_posts = user.micro_posts.paginate(:page => params[:page], :per_page => 5)
       end
     end
 

@@ -6,6 +6,7 @@ class CreateMicroPosts < ActiveRecord::Migration
       t.string :title
       t.integer :user_id
       t.datetime :pub_date
+      t.integer :user_id
 
       t.timestamps
     end
