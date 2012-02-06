@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
     :description
   validates :name, :presence => true, :uniqueness => true
   has_many :entrys, :dependent => :destroy
-  has_many :micro_posts, :dependent => :destroy
+  has_many :microposts, :dependent => :destroy
   has_many :relationships, :foreign_key => "follower_id", :dependent => :destroy
   has_many :following, :through => :relationships, :source => :followed
   has_many :reverse_relationships, :foreign_key => "followed_id", 
@@ -22,12 +22,12 @@ class User < ActiveRecord::Base
   end
 
   def add_post(post)
-    self.micro_posts << post
+    self.microposts << post
     logger.info "add post #{post.title} to #{name}"
   end
 
   def has_post?(url)
-    micro_posts.each do |post|
+    microposts.each do |post|
       return true if url.downcase == post.url
     end
     return false
@@ -84,8 +84,8 @@ class User < ActiveRecord::Base
     post = MicroPost.new(:description => "temp", :url => item.link, 
                          :title => item.title, :pub_date => item.pubDate,
                          :tag => tag)
-    post.user = self
     add_post(post)
+    post.user = self
   end
 
   def create_post_from_atom(item, tag)
