@@ -23,6 +23,7 @@ cn:
     refresh_post: "刷新"
     wait_refresh: "刷新中..."
     edit_profile: "个人信息"
+    look_around: "看看别人"
     no_description: "没有简介"
     no_title: "没有标题"
     follow: "关注"
@@ -55,6 +56,7 @@ cn:
     other_following: "他关注的人"
     signin_directly: "已有帐号直接登录"
     update_log: "更新日志"
+    random_user: "Coders"
 
     will_paginate:
         previous_label: "&#8592;前一页"

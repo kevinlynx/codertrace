@@ -18,7 +18,8 @@
   </dl>
   <dl>
     <dd>
-      <%= f.submit t(:update), :class => 'link-btn' %>
+      <%= link_to_submit t(:update), :class => 'link-btn' %>
+      <%= link_to t("entry.back"), user_path(@user), :class => 'link-btn' %>
     </dd>
   </dl>
 <% end %>
