@@ -67,6 +67,8 @@ ActiveRecord::Schema.define(:version => 20120201020846) do
     t.string   "tag"
   end
 
+  add_index "micro_posts", ["user_id"], :name => "index_micro_posts_on_user_id"
+
   create_table "process_jobs", :force => true do |t|
     t.string   "url"
     t.datetime "created_at"
