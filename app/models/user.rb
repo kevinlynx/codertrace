@@ -81,8 +81,9 @@ class User < ActiveRecord::Base
   end
 
   def create_post_from_rss(item, tag)
-    post = MicroPost.new(:description => "temp", :url => item.link, 
-                         :title => item.title, :pub_date => item.pubDate,
+    # item.pubDate.to_s fix an issue: http://stackoverflow.com/questions/9155190/insert-to-database-error-on-heroku-but-worked-locally-activerecordstatementin
+    post = MicroPost.new(:description => item.description, :url => item.link, 
+                         :title => item.title, :pub_date => item.pubDate.to_s,
                          :tag => tag)
     add_post(post)
     post.user = self
@@ -92,7 +93,7 @@ class User < ActiveRecord::Base
     post = MicroPost.new(:description => item.content.content || "No description",
                          :url => item.link.href || "No url", 
                          :title => item.title.content || "No title",
-                         :pub_date => item.published.content.localtime,
+                         :pub_date => item.published.content.localtime.to_s,
                          :tag => tag)
     post.user = self
     add_post(post)
