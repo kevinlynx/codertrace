@@ -672,7 +672,7 @@ a.big-button {
 
 .hor-signin ul li {
   text-align: left;
-  width: 240px;
+  width: 220px;
   list-style-type: none;
   display: block;
   float: left;
@@ -682,12 +682,21 @@ a.big-button {
   width: 60px;
 }
 
-.hor-signin ul li.space {
-  text-align: right;
+.hor-signin label {
+  display: inline-block;
+  margin: 0 0 3px;
 }
 
 .hor-signin a.quiet {
   color: #cacaca;
+}
+
+.hor-signin .txt-ctrl {
+  width: 200px;
+}
+
+.hor-signin .link-btn-dark {
+  width: 68px;
 }
 
 .round {
