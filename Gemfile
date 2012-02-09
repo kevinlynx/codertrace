@@ -42,4 +42,4 @@ gem 'delayed_job'
 gem 'delayed_job_active_record'
 gem 'daemons'
 gem 'i18n-js'
-
+gem 'hpricot'

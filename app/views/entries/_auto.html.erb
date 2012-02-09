@@ -1,0 +1,15 @@
+<div class="tips">
+  <%= t "tip.auto_entry" %>
+</div>
+<%= form_for(@entry) do |f| %>
+  <dl>
+    <dt><%= f.label :url, t(:url) %></dt>
+    <dd><%= f.text_field :url, :class => 'txt-ctrl', :size => "45" %></dd>
+  </dl>
+  <dl>
+    <dd>
+      <%= link_to_submit t(:add), :class => 'link-btn' %>
+      <%= link_to t("entry.back"), user_path(current_user), :class => 'link-btn' %>
+    </dd>
+  </dl>
+<% end %>

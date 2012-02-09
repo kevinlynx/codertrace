@@ -45,6 +45,11 @@ class Entry < ActiveRecord::Base
     ProcessJob.exist? rss_url
   end
 
+  def try_complete
+    EntryRssJob.schedule url, id, user.id
+  end
+
+  # TODO: delete
   def complete(method)
     self.completed = 1
     if method == 'manual' 
@@ -59,13 +64,19 @@ class Entry < ActiveRecord::Base
     completed == 1
   end
 
+  def failed?
+    completed == -1
+  end
+
   private
+    # TODO: delete
     def complete_blog
       self.completed = 0
       self.tag = "blog"
       EntryRssJob.schedule rss_url, id, user.id
     end
 
+    # TODO: delete
     def complete_github
       logger.info "!!!!!!!!!!complete_github #{url}"
       self.tag = "project"

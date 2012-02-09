@@ -69,7 +69,9 @@ function request_latest_posts() {
 function refresh_entry(url, times) {
     times ++;
     $.get(url, function(data, stat, xhr) {
-                    if (data["complete"] != "true") {
+                    if (data["complete"] == "failed") { /* failed */
+                        $('#entry-tip-'+data["id"]).html("failed");
+                    } else if (data["complete"] == "wait") { /* processing */
                         if (times >= 30) {
                             $('#entry-tip-'+data["id"]).html(I18n.t("frontend.timeout"))
                         } else {

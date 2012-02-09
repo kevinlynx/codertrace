@@ -8,6 +8,7 @@ cn:
     add_manual_entry: "手工添加"
     add_blog_entry: "添加博客"
     add_github_entry: "添加Github"
+    add_auto_entry: "自动添加"
     edit_entry: "编辑"
     follower: "关注"
     following: "关注"

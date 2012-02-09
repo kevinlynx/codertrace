@@ -13,10 +13,12 @@ class EntriesController < ApplicationController
     data = {}
     data[:id] = @entry.id
     if @entry.completed?
-      data[:complete] = 'true'
       data[:entry] = render_to_string :partial => 'entries/entry'
+      data[:complete] = "success"
+    elsif @entry.failed?
+      data[:complete] = "failed"
     else
-      data[:complete] = 'false'
+      data[:complete] = "wait"
     end
     respond_to do |format|
       format.js { render :json => data.to_json, :content_type => 'application/json' }
@@ -41,6 +43,11 @@ class EntriesController < ApplicationController
     @title = t "title.add_github_entry"
   end
 
+  def new_auto
+    @entry = Entry.new
+    @title = t "title.add_auto_entry"
+  end
+
   def edit
     @entry = Entry.find(params[:id])
     @title = t "title.edit_entry"
@@ -48,8 +55,7 @@ class EntriesController < ApplicationController
 
   def create
     @entry = Entry.create(params[:entry], current_user)
-    @entry.complete params[:method]
-    logger.info "!!!!!!!entry.create #{@entry.title}, #{@entry.url}"
+    @entry.try_complete
     respond_to do |format|
       if @entry.save
         format.html { redirect_to user_path(current_user), notice: 'add done' }
