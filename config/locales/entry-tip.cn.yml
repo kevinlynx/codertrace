@@ -9,9 +9,11 @@ cn:
     edit: "编辑"
     back: "返回"
     delete: "删除"
+    more: "更多方式"
 
   tip:
     blog_entry: "通过添加博客地址，每次你发表博客时，Coder Trace可以自动抓取你刚发表的文章，并展示给其他人。你所需要做的就是提供你博客的RSS地址，例如http://codemacro.com/feed"
     github_entry: "Github是一个项目托管网站。添加你的Github主页，可以让Coder Trace自动抓取你在你项目中的动态，例如代码修改，展示这些内容能让你的关注者了解你最近正在忙什么项目。"
     manual_entry: "手动添加一个动态来源，Coder Trace最需要的只是一个RSS地址，其他信息由你填入。"
     auto_entry: "自动获取RSS地址"
+    general: "通过添加你的博客或者你的其他网站页面，我们可以获取你在这些网站上的活动。试试输入你的博客地址"

@@ -4,7 +4,9 @@
   <h3 class="window-title">
     <%= t "entry.title" %> (<%= @user.entrys.count %>)
     <% if @user == current_user %>
-      <%= link_to t(:new_entry), new_entry_path, :class => "title-link" %>
+      <%= link_to t(:new_entry), '#', :class => "title-link", :id => "add-entry-link",
+            :onclick => "switch_quickadd(); return false;" %>
+      <%= render 'entries/quickadd' %>
     <% end %>
   </h3>
   <% if user_entry_count(@user).zero? %>

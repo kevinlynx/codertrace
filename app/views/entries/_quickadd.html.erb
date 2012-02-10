@@ -1,0 +1,13 @@
+<div id="quickadd">
+<%= form_for(:entry, :url => entries_path) do |f| %>
+  <div><p><%= t "tip.general" %></p></div>
+  <div><%= f.text_field :url, :class => 'txt-ctrl', :size => "35" %></div>
+  <div id="buttons">
+    <%= link_to_submit t(:add), :class => 'link-btn-small' %>
+    <%= link_to t("entry.back"), '#', :onclick => "hide_quickadd(); return false;",
+            :class => 'link-btn-small' %>
+    <%= link_to t("entry.more"), new_auto_entry_path, :class => 'link-btn-small' %>
+  </div>
+<% end %>
+</div>
+

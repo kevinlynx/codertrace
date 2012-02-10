@@ -57,6 +57,7 @@ cn:
     signin_directly: "已有帐号直接登录"
     update_log: "更新日志"
     random_user: "Coders"
+    more: "更多"
 
     will_paginate:
         previous_label: "&#8592;前一页"
