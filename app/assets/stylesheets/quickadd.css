@@ -8,10 +8,11 @@
   background: white;
   width: 300px;
   text-align: center;
+  font-size: 12px;
 }
 
 #quickadd p {
-  font-size: 11px;
+  font-size: 90%;
   color: #666;
   text-align: left;
 }
@@ -22,7 +23,7 @@
 
 #quickadd #buttons a {
   float: none;
-  font-size: 11px;
+  font-size: 12px;
   margin: 0 4px;
   text-decoration: none;
 }
