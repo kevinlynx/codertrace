@@ -2,8 +2,8 @@ jQuery(document).ready(function() {
     $('#quickadd').hide();
 });
 
-function popup_quickadd() {
-    var target = $(get_target(arguments.callee.caller.arguments[0]));
+function popup_quickadd(e) {
+    var target = $(e)
     var add = $('#quickadd');
     var pos = target.position();
     var height = target.outerHeight();
@@ -16,21 +16,11 @@ function hide_quickadd() {
     $('#quickadd').hide(300);
 }
 
-function switch_quickadd() {
+function switch_quickadd(target) {
     var e = $('#quickadd');
     if (e.is(':visible')) 
         hide_quickadd();
     else
-        popup_quickadd();
-}
-
-function get_target(e) {
-    var targ;
-    if (!e) var e = window.event;
-    if (e.target) targ = e.target;
-    else if (e.srcElement) targ = e.srcElement;
-    if (targ.nodeType == 3) // defeat Safari bug
-        targ = targ.parentNode;
-    return targ;
+        popup_quickadd(target);
 }
 

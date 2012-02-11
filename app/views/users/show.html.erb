@@ -5,16 +5,21 @@
     <%= t "entry.brief" %> (<%= @user.entrys.count %>)
     <% if @user == current_user %>
       <%= link_to t(:new_entry), '#', :class => "title-link", :id => "add-entry-link",
-            :onclick => "switch_quickadd(); return false;" %>
+            :onclick => "switch_quickadd('#add-entry-link'); return false;" %>
       <%= render 'entries/quickadd' %>
     <% end %>
   </h3>
   <% if user_entry_count(@user).zero? %>
-    <div class="notice">
-      <div class="no_entry_tip">
-        <p><%= t "tip.no_entry" %></p>
-        <%= link_to t("entry.add_now"), "#", :class => 'link-btn', :onclick => "switch_quickadd(); return false;" %>
-      </div>
+    <div class="notice gray">
+      <% if @user == current_user %>
+        <div class="no_entry_tip">
+          <p><%= t "tip.no_entry" %></p>
+          <%= link_to t("entry.add_now"), "#", :class => 'link-btn', :id => "add_now_link",
+                :onclick => "switch_quickadd('#add_now_link'); return false;" %>
+        </div>
+      <% else %>
+          <%= t "tip.other_no_entry" %>
+      <% end %>
     </div>
   <% else %>
     <div id="entry-list">
