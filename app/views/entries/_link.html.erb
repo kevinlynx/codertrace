@@ -1,0 +1,7 @@
+<% if entry.user == current_user %>
+  <p class="link">
+    <%= link_to t("entry.edit"), edit_entry_path(entry) %>
+    <%= link_to t("entry.delete"), entry_path(entry), :method => :delete, 
+            :confirm => t("confirm.sure_delete_entry") %>
+  </p>
+<% end %>

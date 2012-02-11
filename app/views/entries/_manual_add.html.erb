@@ -4,7 +4,7 @@
 <%= form_for(@entry) do |f| %>
   <%= hidden_field_tag :method, :manual %>
   <dl>
-    <dt><%= f.label :title, t(:title) %></dt>
+    <dt><%= f.label :title, t("entry.title") %></dt>
     <dd><%= f.text_field :title, :class => 'txt-ctrl' %></dd>
   </dl>
   <dl>

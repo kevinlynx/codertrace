@@ -3,6 +3,7 @@
   <% if user_signed_in? %>
     <li><%= gravatar_for(current_user, :size => 30) %>
     <li class="name"><%= link_to current_user.name, user_path(current_user) %>
+    <li><%= link_to t(:user_index), user_path(current_user) %>
     <li><%= link_to t(:edit_profile), settings_profile_path %>
     <li><%= link_to t(:look_around), users_path %>
     <li><%= link_to t(:sign_out), destroy_user_session_path, :method => :delete %>

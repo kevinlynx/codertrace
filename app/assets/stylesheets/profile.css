@@ -202,6 +202,16 @@ span#posts-update-time {
   float:right;
 }
 
+#all-entries .no_entry_tip {
+  color: #666;
+  font-size: 12px;
+  text-align: center;
+}
+
+#all-entries .no_entry_tip p {
+  text-align: left;
+}
+
 #main {
   float: left;
 }
@@ -305,6 +315,16 @@ td.follow-stats {
 .entry .desc {
   margin: 10px 5px;
   font-size: 13px;
+  padding-bottom: 5px;
+}
+
+.entry .desc p.link {
+  float: right;
+}
+
+.entry .desc p.link a {
+  color: #4183c4;
+  text-decoration: none;
 }
 
 /* for user list display: following/follower/all */
@@ -458,6 +478,10 @@ td.follow-stats {
     background: #d5edf8; 
     color: #205791; 
     border-color: #92cae4; 
+}
+
+.gray {
+  color: #666;
 }
 
 /* the login form styles */

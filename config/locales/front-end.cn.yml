@@ -3,3 +3,4 @@ cn:
     refresh: "刷新"
     wait_refresh: "请稍候..."
     timeout: "超时"
+    failed: "失败"

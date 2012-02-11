@@ -1,8 +1,6 @@
 <div class="tab-nav-frame">
   <ul class="tab-nav">
     <li><%= link_to t("entry.add_auto"), new_auto_entry_path, is_current?(:auto, current) %></li>
-    <li><%= link_to t("entry.add_blog"), new_blog_entry_path, is_current?(:blog, current) %></li>
-    <li><%= link_to t("entry.add_github"), new_github_entry_path, is_current?(:github, current) %></li>
     <li><%= link_to t("entry.manual_add"), new_entry_path, is_current?(:manual, current) %></li>
   </ul>
 </div>

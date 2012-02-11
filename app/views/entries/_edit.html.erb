@@ -1,11 +1,15 @@
 <%= form_for(@entry) do |f| %>
   <dl>
-    <dt><%= f.label :title, t(:title) %></dt>
-    <dd><%= f.text_field :title, :class => 'txt-ctrl' %></dd>
+    <dt><%= f.label :title, t("entry.title") %></dt>
+    <dd><%= f.text_field :title, :class => 'txt-ctrl', :size => 35 %></dd>
   </dl>
   <dl>
     <dt><%= f.label :url, t(:url) %></dt>
-    <dd><%= f.text_field :url, :class => 'txt-ctrl' %></dd>
+    <dd><%= f.text_field :url, :class => 'txt-ctrl', :size => 35 %></dd>
+  </dl>
+  <dl>
+    <dt><%= f.label :rss_url, t(:rss_url) %></dt>
+    <dd><%= f.text_field :rss_url, :class => 'txt-ctrl', :disabled => true, :size => 35 %></dd>
   </dl>
   <dl>
     <dt><%= f.label :description, t("entry.desc") %></dt>

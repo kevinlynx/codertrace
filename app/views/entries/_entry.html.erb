@@ -2,10 +2,20 @@
 <% unless entry.completed? %>
   <% if entry.user == current_user %>
     <div class="entry" id="entry-<%= entry.id %>">
-      <h3 id="entry-tip-<%= entry.id %>" style="width:100%; text-align: center;"><%= t :getting_entry %></h3>
-      <script type="text/javascript">
-        start_refresh_entry('<%= entry_path(entry) %>')
-      </script>
+      <div class="meta">
+        <div class="title">
+          <span><strong>
+            <%= link_to t(:getting_entry), edit_entry_path(entry), :id => "entry-tip-#{entry.id}" %>
+          </strong></span>
+        </div>
+      </div>
+      <div class="desc">
+        <span id="entry-result-<%= entry.id %>">&nbsp;</span>
+        <%= render 'entries/link', :entry => entry %>
+        <script type="text/javascript">
+          start_refresh_entry('<%= entry_path(entry) %>')
+        </script>
+      </div>
     </div>
   <% end %>
 <% else %>
@@ -29,6 +39,7 @@
     </div>
     <div class="desc">
       <%= entry.description %>
+      <%= render 'entries/link', :entry => entry %>
     </div>
   </div>
 <% end %>

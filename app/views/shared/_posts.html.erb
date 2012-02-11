@@ -1,6 +1,6 @@
 <div id="post-list">
 <% if @micro_posts.count.zero? %>
-  <div class="notice">No activity</div>
+  <div class="notice gray"><%= t "tip.no_activity" %></div>
 <% else %>
   <%= render @micro_posts %>
   <div class="flickr_pagination">

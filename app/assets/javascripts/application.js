@@ -71,7 +71,8 @@ function refresh_entry(url, times) {
     times ++;
     $.get(url, function(data, stat, xhr) {
                     if (data["complete"] == "failed") { /* failed */
-                        $('#entry-tip-'+data["id"]).html("failed");
+                        $('#entry-tip-'+data["id"]).html(I18n.t("frontend.failed"));
+                        $('#entry-result-'+data["id"]).html(data["err_msg"]);
                     } else if (data["complete"] == "wait") { /* processing */
                         if (times >= 30) {
                             $('#entry-tip-'+data["id"]).html(I18n.t("frontend.timeout"))

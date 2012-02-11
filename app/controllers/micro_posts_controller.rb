@@ -1,4 +1,5 @@
 class MicroPostsController < ApplicationController
+  before_filter :authenticate_user!
   # GET /micro_posts
   # GET /micro_posts.json
   def index

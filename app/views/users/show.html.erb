@@ -2,7 +2,7 @@
 <%= render 'shared/header-profile', :user => @user %>
 <div id="all-entries">
   <h3 class="window-title">
-    <%= t "entry.title" %> (<%= @user.entrys.count %>)
+    <%= t "entry.brief" %> (<%= @user.entrys.count %>)
     <% if @user == current_user %>
       <%= link_to t(:new_entry), '#', :class => "title-link", :id => "add-entry-link",
             :onclick => "switch_quickadd(); return false;" %>
@@ -10,7 +10,12 @@
     <% end %>
   </h3>
   <% if user_entry_count(@user).zero? %>
-    <div class="notice">No entries</div>
+    <div class="notice">
+      <div class="no_entry_tip">
+        <p><%= t "tip.no_entry" %></p>
+        <%= link_to t("entry.add_now"), "#", :class => 'link-btn', :onclick => "switch_quickadd(); return false;" %>
+      </div>
+    </div>
   <% else %>
     <div id="entry-list">
       <%= render @user.entrys %>

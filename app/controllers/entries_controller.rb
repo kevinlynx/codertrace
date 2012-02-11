@@ -17,6 +17,7 @@ class EntriesController < ApplicationController
       data[:complete] = "success"
     elsif @entry.failed?
       data[:complete] = "failed"
+      data[:err_msg] = @entry.description
     else
       data[:complete] = "wait"
     end
