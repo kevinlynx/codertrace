@@ -314,16 +314,19 @@ td.follow-stats {
 .entry .desc {
   margin: 10px 5px;
   font-size: 13px;
-  padding-bottom: 5px;
+  padding-bottom: 12px;
 }
 
 .entry .desc p.link {
   float: right;
+  margin: 0 5px 10px;
+  font-size: 12px;
 }
 
 .entry .desc p.link a {
   color: #4183c4;
   text-decoration: none;
+  margin-right: 3px;
 }
 
 /* for user list display: following/follower/all */
