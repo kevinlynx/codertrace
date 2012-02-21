@@ -29,6 +29,7 @@ Profile::Application.routes.draw do
   match "/about" => "home#about", :as => :about, :via => :get
   match "/intro" => "home#intro", :as => :intro, :via => :get
   match "/story" => "home#story", :as => :story, :via => :get
+  match "/suggest" => "home#suggest", :as => :suggest, :via => :get
   match "/update_log" => "home#update_log", :as => :update_log, :via => :get
 
   # The priority is based upon order of creation:

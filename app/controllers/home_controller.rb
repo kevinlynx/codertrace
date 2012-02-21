@@ -26,4 +26,8 @@ class HomeController < ApplicationController
   def update_log
     @title = t "title.update_log"
   end
+
+  def suggest
+    @title = t "title.suggest"
+  end
 end
