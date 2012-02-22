@@ -10,7 +10,11 @@ class JobProgress < ActiveRecord::Base
 
   def self.finished(id)
     return if id < 0
-    jobs = JobProgress.find id
+    begin
+      jobs = JobProgress.find id
+    rescue 
+      return 
+    end
     if jobs 
       jobs.finished += 1
       jobs.save
