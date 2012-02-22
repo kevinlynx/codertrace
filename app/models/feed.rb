@@ -13,7 +13,14 @@ class Feed < ActiveRecord::Base
       FeedJob.schedule(rss_url, jobs_id)
       return nil
     end
-    RSS::Parser.parse feed.content
+    rss = nil
+    begin
+      rss = RSS::Parser.parse feed.content
+    rescue
+      logger.error "parse rss failed #{rss_url}"
+      rss = nil
+    end
+    rss
   end
 
   def self.has_cache?(rss_url)

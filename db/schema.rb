@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120201020846) do
+ActiveRecord::Schema.define(:version => 20120222024123) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(:version => 20120201020846) do
 
   create_table "feeds", :force => true do |t|
     t.string   "url"
-    t.text     "content"
+    t.text     "content",     :limit => 2147483647
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "download_at"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(:version => 20120201020846) do
   end
 
   create_table "micro_posts", :force => true do |t|
-    t.text     "description"
+    t.text     "description", :limit => 2147483647
     t.string   "url"
     t.string   "title"
     t.integer  "user_id"
