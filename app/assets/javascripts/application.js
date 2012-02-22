@@ -10,6 +10,9 @@
 //= require i18n/translations
 //= require quickadd
 
+var refresh_max = 60
+var refresh_interval = 1000
+
 jQuery(function($) {
     var e = $('#refresh-link')
     if (e.length != 0) { /* maybe it's not the user index page */
@@ -44,10 +47,10 @@ function refresh_progress(url, times) {
     times ++;
     $.post(url, function(data, stat, xhr) {
                     if (data["progress"] != "-1") {
-                        if (times >= 30) {
+                        if (times >= refresh_max) {
                             refresh_post_failed()
                         } else {
-                            setTimeout(function () { refresh_progress(url, times); }, 1000);
+                            setTimeout(function () { refresh_progress(url, times); }, refresh_interval);
                         }
                     } else {
                         $('#post-list').html(data["posts"]);
@@ -59,7 +62,7 @@ function refresh_progress(url, times) {
 
 function start_refresh_progress(url) {
     var times = 0;
-    setTimeout(function () { refresh_progress(url, times); }, 1000);
+    setTimeout(function () { refresh_progress(url, times); }, refresh_interval);
 }
 
 function request_latest_posts() {
@@ -74,10 +77,10 @@ function refresh_entry(url, times) {
                         $('#entry-tip-'+data["id"]).html(I18n.t("frontend.failed"));
                         $('#entry-result-'+data["id"]).html(data["err_msg"]);
                     } else if (data["complete"] == "wait") { /* processing */
-                        if (times >= 30) {
+                        if (times >= refresh_max) {
                             $('#entry-tip-'+data["id"]).html(I18n.t("frontend.timeout"))
                         } else {
-                            setTimeout(function() { refresh_entry(url, times); }, 1000);
+                            setTimeout(function() { refresh_entry(url, times); }, refresh_interval);
                         }
                     } else {
                         $('#entry-'+data["id"]).html(data["entry"])
@@ -89,6 +92,6 @@ function refresh_entry(url, times) {
 
 function start_refresh_entry(url) {
     var times = 0;
-    setTimeout(function() { refresh_entry(url ,times); }, 1000);
+    setTimeout(function() { refresh_entry(url ,times); }, refresh_interval);
 }
 
