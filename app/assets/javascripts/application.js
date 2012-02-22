@@ -11,7 +11,7 @@
 //= require quickadd
 
 var refresh_max = 60
-var refresh_interval = 1000 * 60 * 5
+var refresh_interval = 1000 * 5
 
 jQuery(function($) {
     var e = $('#refresh-link')
