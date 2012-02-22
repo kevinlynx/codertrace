@@ -63,9 +63,6 @@ GEM
       term-ansicolor (~> 1.0.5)
     heroku_external_db (1.0.3)
     hike (1.2.1)
-    hirefire (0.1.4)
-      heroku (>= 1.4)
-      rush (~> 0.6.7)
     hpricot (0.8.6)
     i18n (0.6.0)
     i18n-js (2.1.2)
@@ -145,6 +142,11 @@ GEM
     warden (1.1.0)
       rack (>= 1.0)
     will_paginate (3.0.2)
+    workless (1.0.1)
+      delayed_job (>= 2.0.7)
+      heroku
+      rails
+      rush
 
 PLATFORMS
   ruby
@@ -152,12 +154,11 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.1.1)
   daemons
-  delayed_job
+  delayed_job (~> 3.0.1)
   delayed_job_active_record
   devise
   gravatar_image_tag
   heroku_external_db
-  hirefire
   hpricot
   i18n-js
   jquery-rails
@@ -168,3 +169,4 @@ DEPENDENCIES
   turn (~> 0.8.3)
   uglifier (>= 1.0.3)
   will_paginate
+  workless (~> 1.0.1)
