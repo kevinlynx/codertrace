@@ -28,3 +28,7 @@
   text-decoration: none;
 }
 
+#quickadd #error_tip {
+  color: red;
+}
+

@@ -14,6 +14,7 @@ function popup_quickadd(e) {
 
 function hide_quickadd() {
     $('#quickadd').hide(300);
+    $('#error_tip').html("");
 }
 
 function switch_quickadd(target) {
@@ -22,5 +23,14 @@ function switch_quickadd(target) {
         hide_quickadd();
     else
         popup_quickadd(target);
+}
+
+function check_submit() {
+    var target = $('#url_text');
+    if (target.val() == "") {
+        $('#error_tip').html(I18n.t("frontend.input_valid_data"));
+    } else {
+        target.closest('form').submit();
+    }
 }
 

@@ -1,9 +1,10 @@
 <div id="quickadd">
 <%= form_for(:entry, :url => entries_path) do |f| %>
   <div><p><%= t "tip.general" %></p></div>
-  <div><%= f.text_field :url, :class => 'txt-ctrl', :size => "35" %></div>
+  <div id="error_tip"></div>
+  <div><%= f.text_field :url, :class => 'txt-ctrl', :size => "35", :id => 'url_text' %></div>
   <div id="buttons">
-    <%= link_to_submit t(:add), :class => 'link-btn-small' %>
+    <%= link_to t(:add), '#', :class => 'link-btn-small', :onclick => "check_submit(); return false" %>
     <%= link_to t("entry.back"), '#', :onclick => "hide_quickadd(); return false;",
             :class => 'link-btn-small' %>
     <%= link_to t("entry.more"), new_auto_entry_path, :class => 'link-btn-small' %>

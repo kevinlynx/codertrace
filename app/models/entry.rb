@@ -1,9 +1,11 @@
  
 class Entry < ActiveRecord::Base
   belongs_to :user
+  require 'open-uri'
 
   def self.create(hash, user)
     entry = Entry.new(hash)
+    entry.fix_url
     user.add_entry(entry)
     entry.user = user
     entry
@@ -49,17 +51,6 @@ class Entry < ActiveRecord::Base
     EntryRssJob.schedule url, id, user.id
   end
 
-  # TODO: delete
-  def complete(method)
-    self.completed = 1
-    if method == 'manual' 
-    elsif method == 'blog'
-      complete_blog
-    elsif method == 'github'
-      complete_github
-    end
-  end
-
   def completed?
     completed == 1
   end
@@ -68,21 +59,11 @@ class Entry < ActiveRecord::Base
     completed == -1
   end
 
-  private
-    # TODO: delete
-    def complete_blog
-      self.completed = 0
-      self.tag = "blog"
-      EntryRssJob.schedule rss_url, id, user.id
+  def fix_url
+    u = URI.parse(self.url)
+    if u.scheme.nil?
+      self.url = "http://" + self.url
     end
-
-    # TODO: delete
-    def complete_github
-      logger.info "!!!!!!!!!!complete_github #{url}"
-      self.tag = "project"
-      self.rss_url = url + '.atom'
-      self.title = "Github page"
-      self.description = "This is my Github page"
-    end
+  end
 end
 

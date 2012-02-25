@@ -4,3 +4,4 @@ cn:
     wait_refresh: "请稍候..."
     timeout: "超时"
     failed: "失败"
+    input_valid_data: "请输入合法的URL"

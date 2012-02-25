@@ -1,2 +1,2 @@
 var I18n = I18n || {};
-I18n.translations = {"cn":{"frontend":{"refresh":"\u5237\u65b0","wait_refresh":"\u8bf7\u7a0d\u5019...","timeout":"\u8d85\u65f6","failed":"\u5931\u8d25"}}};
+I18n.translations = {"cn":{"frontend":{"refresh":"\u5237\u65b0","wait_refresh":"\u8bf7\u7a0d\u5019...","timeout":"\u8d85\u65f6","failed":"\u5931\u8d25","input_valid_data":"\u8bf7\u8f93\u5165\u5408\u6cd5\u7684URL"}}};
