@@ -46,7 +46,3 @@ gem 'i18n-js'
 gem 'hpricot'
 gem 'heroku_external_db'
 gem 'mysql2'
-
-group :development do
-  gem 'sqlite3'
-end
