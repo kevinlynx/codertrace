@@ -1,0 +1,28 @@
+###2.27.2012
+
+* 实现“更新日志“界面，更新日志使用markdown编写，使用maruku转换为html显示到网页
+* 对于失败的entry，不再自动刷新（实际上没有真正刷新），而是显示'retry'链接，重新提交job
+* 修正部分RSS字符编码问题，例如inotseeyou.com、911pop.com
+
+虽然是UTF8编码，但有些RSS竟然带了BOM头，之前遇到过类似问题，通过force_encoding('utf8')即可解决，但这回这个也解决不了。google后可通过如下方式解决：
+
+    s.encode!('UTF-16', 'UTF-8', :invalid => :replace, :replace => '')
+    s.encode!('UTF-8', 'UTF-16')
+
+但悲剧的是这样的代码在本地工作正常，在heroku上则会出现ConverterNotFound的错误，以下修正可正确工作：
+
+    s.encode!('UTF-16BE', 'UTF-8', :invalid => :replace, :replace => '')
+    s.encode!('UTF-8', 'UTF-16BE')
+
+此外，偶尔也发现worker在heroku上得不到启动的问题，迟些时候看看。
+
+###2.25.2012
+
+* 添加entry时，前台增加空字符串的判断
+* 添加entry界面增加失败反馈结果，目前主要是非法url
+* 自动为不带http前缀的URL添加协议
+
+###2.24.2012
+
+* 发布博客，低调宣布codertrace.com上线。
+

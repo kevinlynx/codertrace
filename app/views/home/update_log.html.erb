@@ -1,4 +1,6 @@
 <%= render 'home/tab_nav', :current => :update_log %>
-<p>
-this is the update log page
-</p>
+<div id="history">
+  <p>
+    <%= sanitize history_content %>
+  </p>
+</div>

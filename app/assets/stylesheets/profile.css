@@ -102,6 +102,14 @@
   text-shadow: 0 1px 0 #00466C;
 }
 
+#dashboard ul.nav a.highlight {
+  color: #ff5348;
+}
+
+#dashboard ul.nav a.highlight:hover {
+  color: red;
+}
+
 #dashboard ul.nav a:focus, #dashboard ul.nav a:hover {
   color: white;//#09f;
 }
