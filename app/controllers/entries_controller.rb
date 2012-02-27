@@ -17,13 +17,19 @@ class EntriesController < ApplicationController
       data[:complete] = "success"
     elsif @entry.failed?
       data[:complete] = "failed"
-      data[:err_msg] = @entry.description
+      data[:err_msg] = render_to_string :partial => "entries/status"
     else
       data[:complete] = "wait"
     end
     respond_to do |format|
       format.js { render :json => data.to_json, :content_type => 'application/json' }
     end
+  end
+
+  def retry
+    @entry = Entry.find(params[:id])
+    @entry.try_complete unless @entry.completed?
+    redirect_to @entry.user
   end
 
   def new

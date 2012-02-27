@@ -8,6 +8,7 @@ Profile::Application.routes.draw do
   get "entries/new_blog", :as => :new_blog_entry
   get "entries/new_github", :as => :new_github_entry
   get "entries/new_auto", :as => :new_auto_entry
+  match "/entries/retry/:id" => "entries#retry", :as => :retry_entry, :via => :get
   resources :entries
 
   devise_for :users

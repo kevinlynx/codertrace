@@ -33,8 +33,9 @@ class EntryRssJob < Struct.new(:url, :entry_id, :user_id)
     content = ""
     begin
       open(rss_url, "User-Agent" => USER_AGENT) do 
-        |s| content = s.read.force_encoding("UTF-8") 
+        |s| content = s.read 
       end
+      Common.force_utf8! content
     rescue OpenURI::HTTPError => the_error
     end
     rss = nil

@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(:version => 20120222024123) do
 
   create_table "feeds", :force => true do |t|
     t.string   "url"
-    t.text     "content",     :limit => 2147483647
+    t.text     "content",     :limit => 4294967295
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "download_at"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(:version => 20120222024123) do
   end
 
   create_table "micro_posts", :force => true do |t|
-    t.text     "description", :limit => 2147483647
+    t.text     "description", :limit => 4294967295
     t.string   "url"
     t.string   "title"
     t.integer  "user_id"

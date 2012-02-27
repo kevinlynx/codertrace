@@ -48,6 +48,9 @@ class Entry < ActiveRecord::Base
   end
 
   def try_complete
+    self.completed = 0
+    fix_url
+    self.save!
     EntryRssJob.schedule url, id, user.id
   end
 
@@ -63,7 +66,9 @@ class Entry < ActiveRecord::Base
     u = URI.parse(self.url)
     if u.scheme.nil?
       self.url = "http://" + self.url
+      return true
     end
+    false
   end
 end
 

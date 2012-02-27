@@ -3,7 +3,8 @@ class FeedJob < Struct.new(:url, :jobs_id)
     require 'open-uri'
     content = ""
     begin
-      open(url) do |s| content = s.read.force_encoding("UTF-8") end
+      open(url) do |s| content = s.read end
+      Common.force_utf8! content
     rescue OpenURI::HTTPError => the_error
       puts "Got a HTTP erro #{the_error.message} on #{url}"
       jobdone

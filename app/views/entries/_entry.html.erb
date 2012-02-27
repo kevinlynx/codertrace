@@ -5,16 +5,17 @@
       <div class="meta">
         <div class="title">
           <span><strong>
-            <%= link_to t(:getting_entry), edit_entry_path(entry), :id => "entry-tip-#{entry.id}" %>
+            <% if entry.failed? %>
+              <%= link_to entry.url, edit_entry_path(entry), :id => "entry-tip-#{entry.id}" %>
+            <% else %>
+              <%= link_to t(:getting_entry), edit_entry_path(entry), :id => "entry-tip-#{entry.id}" %>
+            <% end %>
           </strong></span>
         </div>
       </div>
       <div class="desc">
-        <span id="entry-result-<%= entry.id %>">&nbsp;</span>
+        <span id="entry-result-<%= entry.id %>"><%= render 'entries/status', :entry => entry %></span>
         <%= render 'entries/link', :entry => entry %>
-        <script type="text/javascript">
-          start_refresh_entry('<%= entry_path(entry) %>')
-        </script>
       </div>
     </div>
   <% end %>

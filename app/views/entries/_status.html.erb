@@ -1,0 +1,10 @@
+<% entry ||= @entry %>
+<% if entry.failed? %>
+  <%= entry.description %>
+  <b><%= link_to 'retry', retry_entry_path(entry), :style => "color: #4183c4;" %></b>
+<% else %>
+  <%= entry.url %>
+  <script type="text/javascript">
+    start_refresh_entry('<%= entry_path(entry) %>')
+  </script>
+<% end %>
