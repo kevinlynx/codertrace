@@ -47,3 +47,6 @@ gem 'hpricot'
 gem 'heroku_external_db'
 gem 'mysql2'
 gem 'maruku'
+group :development do
+  gem 'sqlite3'
+end

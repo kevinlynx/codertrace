@@ -15,6 +15,7 @@ Profile::Application.routes.draw do
   resources :users, :only => [:index, :show]  do 
     member do
       get :following, :followers, :entry
+      get :posts
       post :refresh_posts
       match "/refresh_progress/:job_id" => "users#refresh_progress", :as => :refresh_progress, :via => :post
     end

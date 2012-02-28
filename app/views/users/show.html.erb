@@ -30,8 +30,8 @@
 <div id="all-posts">
   <h3 class="window-title">
     <%= t :activity %>
-    <%= link_to t(:refresh_post), refresh_posts_user_path(@user, :page => params[:page]), :id => 'refresh-link', :remote => true, 
-        :class => "title-link", :method => :post %>
+    <%= link_to t(:refresh_post), refresh_posts_user_path(@user, :page => params[:page], :user => params[:user]), 
+                :id => 'refresh-link', :remote => true, :class => "title-link", :method => :post %>
     <span id="posts-update-time" class="quiet"><%= render 'users/posts_update_time' %></span>
   </h3>
   <%= render 'shared/posts' %>

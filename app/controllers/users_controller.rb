@@ -18,6 +18,14 @@ class UsersController < ApplicationController
     @title = t "title.following"
   end
 
+  def posts
+    @user = User.find(params[:id])
+    load_posts @user
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def refresh_posts
     @user = User.find(params[:id])
     job_sum = 0
@@ -75,7 +83,12 @@ class UsersController < ApplicationController
 
     def load_posts(user)
       if is_current_user? user
-        @micro_posts = user.feed.paginate(:page => params[:page], :per_page => 5)
+        focus_user = params[:user].to_i > 0 ? User.find(params[:user].to_i) : nil
+        if focus_user
+          @micro_posts = focus_user.micro_posts.paginate(:page => params[:page], :per_page => 5)
+        else
+          @micro_posts = user.feed.paginate(:page => params[:page], :per_page => 5)
+        end
       else
         @micro_posts = user.micro_posts.paginate(:page => params[:page], :per_page => 5)
       end

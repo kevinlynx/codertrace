@@ -1,7 +1,13 @@
 <div class="post">
   <div class="meta">
     <%= gravatar_for micro_post.user, :size => 30 %>
-    <strong><%= link_to micro_post.user.name, user_path(micro_post.user) %></strong> 
+    <strong>
+      <% if @user == current_user %>
+        <%= link_to micro_post.user.name, posts_user_path(current_user, :user => micro_post.user), :remote => true %>
+      <% else %>
+        <%= link_to micro_post.user.name, posts_user_path(@user, :user => micro_post.user), :remote => true %>
+      <% end %>
+    </strong> 
     <%= t :colon %> 
     <strong><a href='<%= micro_post.url %>'><%= micro_post.title %></a></strong>
   </div>

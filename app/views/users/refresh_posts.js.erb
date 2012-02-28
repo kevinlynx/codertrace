@@ -3,7 +3,8 @@
   $('#post-list').html("<%= escape_javascript(render('shared/posts')) %>")
   $('#posts-update-time').html("<%= escape_javascript(render('users/posts_update_time')) %>")
 <% else %>
-  var url = '<%= refresh_progress_user_path(@user, :job_id => @job_id, :page => params[:page]) %>'
+  var url = '<%= refresh_progress_user_path(@user, :job_id => @job_id, :page => params[:page], 
+          :user => params[:user]) %>'
   start_refresh_progress(url);
 <% end %>
 
