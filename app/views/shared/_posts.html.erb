@@ -10,8 +10,8 @@
 <% else %>
   <%= render @micro_posts %>
   <div class="flickr_pagination">
-    <%= will_paginate @micro_posts, :params => {:controller => 'users', :action => 'show', 
-            :id => @user.id } %>
+    <%= will_paginate @micro_posts, :inner_window => 1, 
+        :params => {:controller => 'users', :action => 'show', :id => @user.id, :user => params[:user] } %>
   </div>
 <% end %>
 </div>

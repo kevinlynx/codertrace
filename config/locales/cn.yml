@@ -62,6 +62,9 @@ cn:
     update_log: "更新日志"
     random_user: "Coders"
     more: "更多"
+    showall: "显示所有"
+    showself: "显示自己"
+    showhim: "只显示他"
 
     will_paginate:
         previous_label: "&#8592;前一页"

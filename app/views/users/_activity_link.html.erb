@@ -1,0 +1,11 @@
+<% if @user == current_user %>
+<div id="activity-link" class="popup round" style="display:none">
+  <%= link_to t(:showall), posts_user_path(@user), :remote => true %>
+  <%= link_to t(:showself), posts_user_path(current_user, :user => current_user), :remote => true %>
+</div>
+<script type="text/javascript">
+  $(document).ready(function() {
+      $('#activity-title').mouseover(function() { show_popup('#activity-link', '#activity-title'); })
+   });
+</script>
+<% end %>

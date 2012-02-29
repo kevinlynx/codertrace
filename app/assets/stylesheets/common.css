@@ -1,0 +1,7 @@
+.popup {
+  position: absolute;
+  z-index: 200;
+  left: 0px;
+  top: 0px;
+}
+

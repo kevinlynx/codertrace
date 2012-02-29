@@ -9,6 +9,7 @@
 //= require i18n
 //= require i18n/translations
 //= require quickadd
+//= require popup
 
 var refresh_max = 60
 var refresh_interval = 1000 * 5
