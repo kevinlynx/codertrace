@@ -1,0 +1,6 @@
+<% if params[:detail] == "true" %>
+  <% content = render 'micro_posts/detail' %>
+<% else %>
+  <% content = render 'micro_posts/brief' %>
+<% end %>
+$('#post-content-<%= @micro_post.id %>').html("<%= escape_javascript(content) %>")

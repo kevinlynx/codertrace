@@ -13,13 +13,8 @@
     <strong><a href='<%= micro_post.url %>'><%= micro_post.title %></a></strong>
   </div>
   <div class="brief">
-    <p>
-      <% if micro_post.tag == 'project' %>
-        <%= sanitize micro_post.description %>
-      <% else %>
-      <%= truncate(strip_tags(micro_post.description), :length => 200) %>
-      <a href="<%= micro_post.url %>"><%= t :continue_read %></a>
-      <% end %>
+    <p id="post-content-<%= micro_post.id %>">
+      <%= render 'micro_posts/brief', :post => micro_post %>
     </p>
     <p class="date">
       <span class="quiet"><%= l micro_post.pub_date, :format => :long %></span>

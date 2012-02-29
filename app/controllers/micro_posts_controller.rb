@@ -19,6 +19,7 @@ class MicroPostsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @micro_post }
+      format.js
     end
   end
 

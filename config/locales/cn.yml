@@ -62,6 +62,7 @@ cn:
     update_log: "更新日志"
     random_user: "Coders"
     more: "更多"
+    fold: "收起"
     showall: "显示所有"
     showself: "显示自己"
     showhim: "只显示他"

@@ -1,0 +1,4 @@
+<% post ||= @micro_post %>
+<%= truncate(strip_tags(post.description), :length => 200) %>
+<%= link_to t(:more), micro_post_path(post, :detail => true), :remote => true, 
+        :class => 'simple-link' %>
