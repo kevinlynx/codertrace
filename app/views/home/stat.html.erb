@@ -1,0 +1,11 @@
+<h3>User count: <%= User.all.count %>, Entry count: <%= Entry.all.count %></h3>
+<h3>Sign in count info</h3>
+<ul>
+  <% User.order("sign_in_count desc").where("sign_in_count > 1").each do |user| %>
+  <li>
+    <%= link_to user.name, user_path(user) %>, 
+    sign_in_count: <%= user.sign_in_count %>, 
+    entry count: <%= user.entrys.count %>
+  </li>
+<% end %>
+</ul>

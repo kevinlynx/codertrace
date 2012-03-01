@@ -29,6 +29,7 @@ Profile::Application.routes.draw do
   put 'settings/password_p'
 
   match "/about" => "home#about", :as => :about, :via => :get
+  match "/stat" => "home#stat", :as => :stat, :via => :get
   match "/intro" => "home#intro", :as => :intro, :via => :get
   match "/story" => "home#story", :as => :story, :via => :get
   match "/suggest" => "home#suggest", :as => :suggest, :via => :get

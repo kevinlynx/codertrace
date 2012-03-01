@@ -30,4 +30,7 @@ class HomeController < ApplicationController
   def suggest
     @title = t "title.suggest"
   end
+
+  def stat
+  end
 end
