@@ -1,4 +1,4 @@
 <% post ||= @micro_post %>
 <%= sanitize post.description %>
 <%= link_to t(:fold), micro_post_path(post, :detail => false), :remote => true,
-        :class => 'simple-link' %>
+        :class => 'simple-link', :disable_with => t(:wait) %>

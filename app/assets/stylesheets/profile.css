@@ -140,15 +140,6 @@
   color: #999;
 }
 
-a:link, a:visited {
-  background: transparent;
-  color: #333;
-}
-
-a:focus, a:hover {
-  color: #09f;
-}
-
 .post {
   margin: 10px 0;
   overflow: hidden;

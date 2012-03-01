@@ -1,3 +1,12 @@
+a:link, a:visited {
+  background: transparent;
+  color: #333;
+}
+
+a:focus, a:hover {
+  color: #09f;
+}
+
 .popup {
   position: absolute;
   z-index: 200;
