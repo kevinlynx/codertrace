@@ -630,3 +630,13 @@ a.big-button {
   color: #4183c4;
 }
 
+a#feedrss {
+  color: #eaeaea;
+  float: right;
+  text-decoration: none;
+}
+
+a:hover#feedrss {
+    color: white;
+}
+

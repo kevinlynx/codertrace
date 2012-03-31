@@ -67,6 +67,11 @@ cn:
     showself: "显示自己"
     showhim: "只显示他"
     wait: "处理中..."
+    subscribe_feed: "订阅"
+    all_activity: "所有动态"
+    rss_title: "CoderTrace.com"
+    rss_description: "CoderTrace.com所有动态"
+    back: "返回"
 
     will_paginate:
         previous_label: "&#8592;前一页"

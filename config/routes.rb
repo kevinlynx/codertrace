@@ -1,6 +1,8 @@
 Profile::Application.routes.draw do
   get "micro_posts/refresh"
   get "micro_posts/destroy_all"
+  match 'micro_posts/feed' => 'micro_posts#feed', :defaults => { :format =>'rss' }, 
+      :as => :micro_posts_feed
   resources :micro_posts
 
   get "home/index"

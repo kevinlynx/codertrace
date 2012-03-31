@@ -1,5 +1,5 @@
 class MicroPostsController < ApplicationController
-  before_filter :authenticate_user!
+  #before_filter :authenticate_user!
   # GET /micro_posts
   # GET /micro_posts.json
   def index
@@ -93,4 +93,12 @@ class MicroPostsController < ApplicationController
     Feed.destroy_all
     redirect_to current_user
   end
+
+  def feed
+    @micro_posts = MicroPost.paginate(:page => params[:page], :per_page => 10)
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
 end
+

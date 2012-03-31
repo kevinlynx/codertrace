@@ -1,6 +1,8 @@
 <div class="all-posts">
-  <h3>All posts(in microposts index)</h3>
-  <%= link_to 'Refresh', micro_posts_refresh_path %>
+  <h3 class="window-title">
+    <span><%= t :all_activity %></span>
+    <%= link_to t(:subscribe_feed), micro_posts_feed_path, :id => 'feedrss' %>
+  </h3>
   <%= render @micro_posts %>
   <div class="flickr_pagination">
     <%= will_paginate @micro_posts %>

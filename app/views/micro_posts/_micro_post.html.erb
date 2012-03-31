@@ -2,7 +2,9 @@
   <div class="meta">
     <%= gravatar_for micro_post.user, :size => 30 %>
     <span><strong>
-      <% if @user == current_user %>
+      <% if @user.nil? %>
+        <%= link_to micro_post.user.name, user_path(micro_post.user) %> 
+      <% elsif @user == current_user %>
         <%= link_to micro_post.user.name, posts_user_path(current_user, :user => micro_post.user), 
             :remote => true, :title => t(:showhim) %>
       <% else %>
